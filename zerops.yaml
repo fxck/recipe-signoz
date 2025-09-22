@@ -42,15 +42,15 @@ zerops:
         OTEL_EXPORTER_OTLP_INSECURE: true
       ports:
         - port: 4317
-          protocol: tcp      # OTLP gRPC
+          protocol: tcp
         - port: 4318
-          httpSupport: true  # OTLP HTTP
+          httpSupport: true
         - port: 54527
-          protocol: tcp      # Syslog TCP (not 514!)
+          protocol: tcp
         - port: 13133
-          httpSupport: true  # Prometheus Remote Write
+          httpSupport: true
         - port: 8888
-          httpSupport: true  # Prometheus metrics
+          httpSupport: true
       prepareCommands:
         - wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.135.0/otelcol-contrib_0.135.0_linux_amd64.tar.gz
         - tar -xzf otelcol-contrib_0.135.0_linux_amd64.tar.gz
