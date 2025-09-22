@@ -11,11 +11,8 @@ zerops:
       ports:
         - port: 8080
           httpSupport: true
-        - port: 514
-        - port: 514
-          protocol: udp
-        - port: 9090
-          httpSupport: true
+        - port: 4317
+          protocol: tcp
       prepareCommands:
         - wget https://github.com/SigNoz/signoz/releases/download/v0.95.1/signoz_linux_amd64.tar.gz
         - tar -xzf signoz_linux_amd64.tar.gz
@@ -34,9 +31,15 @@ zerops:
         OTEL_EXPORTER_OTLP_INSECURE: true
       ports:
         - port: 4317
-          protocol: tcp
+          protocol: tcp      # OTLP gRPC
         - port: 4318
-          httpSupport: true
+          httpSupport: true  # OTLP HTTP
+        - port: 54527
+          protocol: tcp      # Syslog TCP (not 514!)
+        - port: 13133
+          httpSupport: true  # Prometheus Remote Write
+        - port: 8888
+          httpSupport: true  # Prometheus metrics
       prepareCommands:
         - wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.135.0/otelcol-contrib_0.135.0_linux_amd64.tar.gz
         - tar -xzf otelcol-contrib_0.135.0_linux_amd64.tar.gz
