@@ -25,7 +25,7 @@ zerops:
         - tar -xzf signoz_linux_amd64.tar.gz
         - chmod +x signoz_linux_amd64/bin/signoz
         - sudo mv signoz_linux_amd64/bin/signoz /usr/local/bin/
-      start: signoz
+      start: signoz server
 
   - setup: otelcollector
     run:
