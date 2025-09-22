@@ -32,9 +32,7 @@ zerops:
         - port: 4317
           protocol: tcp
       prepareCommands:
-        - ls -la ./target/linux-amd64/
-        - ls -la ./target/linux-amd64/signoz-community
-        - sudo mv ./target/linux-amd64/signoz-community /usr/local/bin/signoz
+        - sudo mv ./signoz/target/linux-amd64/signoz-community /usr/local/bin/signoz
         - sudo chmod +x /usr/local/bin/signoz
       start: signoz server
 
