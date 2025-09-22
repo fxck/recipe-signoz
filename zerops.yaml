@@ -21,7 +21,7 @@ zerops:
         - port: 9090
           httpSupport: true
       prepareCommands:
-        - wget https://github.com/SigNoz/signoz/releases/download/v0.45.0/signoz-v0.45.0-linux-amd64.tar.gz
+        - wget https://github.com/SigNoz/signoz/releases/download/v0.95.1/signoz_linux_amd64.tar.gz
         - tar -xzf signoz-v0.45.0-linux-amd64.tar.gz
         - chmod +x signoz
         - sudo mv signoz /usr/local/bin/
