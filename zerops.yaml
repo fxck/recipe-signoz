@@ -4,7 +4,7 @@ zerops:
       base: ubuntu@22.04
       envVariables:
         SIGNOZ_SQLSTORE_PROVIDER: postgres
-        SIGNOZ_SQLSTORE_POSTGRES_DSN: postgres://${metadata_user}:${metadata_password}@metadata:5432/${metadata_database}?sslmode=disable
+        SIGNOZ_SQLSTORE_POSTGRES_DSN: postgres://${metadata_user}:${metadata_password}@${metadata_hostname}:${metadata_port}/${metadata_dbName}?sslmode=disable
         SIGNOZ_TELEMETRYSTORE_PROVIDER: clickhouse
         SIGNOZ_TELEMETRYSTORE_CLICKHOUSE_DSN: tcp://${clickhouse_hostname}:${clickhouse_portNative}?username=${clickhouse_user}&password=${clickhouse_password}
         SIGNOZ_WEB_UI_PATH: /etc/signoz/web
