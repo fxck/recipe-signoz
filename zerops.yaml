@@ -1,12 +1,12 @@
 zerops:
   - setup: signoz
     build:
-      base: go@1.22
+      base: ubuntu@22.04
       envVariables:
         CI: true
       prepareCommands:
-        - zsc install nodejs@22
-        - zsc install go@1.22
+        - sudo zsc install nodejs@22
+        - sudo zsc install go@1.22
       buildCommands:
         - cd frontend && yarn install
         - make go-build-community-amd64 OS=linux
