@@ -4,6 +4,7 @@ zerops:
       base: ubuntu@22.04
       envVariables:
         CI: true
+        NODE_OPTIONS: --max-old-space-size=8192
       prepareCommands:
         - sudo apt-get update
         - sudo apt-get install -y build-essential
