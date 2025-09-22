@@ -23,8 +23,8 @@ zerops:
       prepareCommands:
         - wget https://github.com/SigNoz/signoz/releases/download/v0.95.1/signoz_linux_amd64.tar.gz
         - tar -xzf signoz_linux_amd64.tar.gz
-        - chmod +x signoz
-        - sudo mv signoz /usr/local/bin/
+        - chmod +x signoz_linux_amd64/bin/signoz
+        - sudo mv signoz_linux_amd64/bin/signoz /usr/local/bin/
       initCommands:
         - signoz migrate
       start: signoz start
