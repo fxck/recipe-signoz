@@ -7,6 +7,10 @@ services:
     type: clickhouse@25.3
     mode: NON_HA
 
+  - hostname: metadata
+    type: postgresql@17
+    mode: NON_HA
+
   - hostname: signoz
     type: ubuntu@22.04
     buildFromGit: https://github.com/fxck/recipe-signoz
