@@ -1,5 +1,19 @@
 zerops:
   - setup: signoz
+    build:
+      base: go@1.22
+      envVariables:
+        CI: true
+      prepareCommands:
+        - zsc install nodejs@22
+        - zsc install go@1.22
+      buildCommands:
+        - cd frontend && yarn install
+        - make go-build-community-amd64 OS=linux
+      deployFiles:
+        - ./frontend/build/~
+      addToRunPrepare:
+        - ./target/linux-amd64/signoz-community
     run:
       base: ubuntu@22.04
       envVariables:
@@ -7,19 +21,16 @@ zerops:
         SIGNOZ_SQLSTORE_POSTGRES_DSN: postgres://${metadata_user}:${metadata_password}@${metadata_hostname}:${metadata_port}/${metadata_dbName}?sslmode=disable
         SIGNOZ_TELEMETRYSTORE_PROVIDER: clickhouse
         SIGNOZ_TELEMETRYSTORE_CLICKHOUSE_DSN: tcp://${clickhouse_hostname}:${clickhouse_portNative}?username=${clickhouse_user}&password=${clickhouse_password}
-        SIGNOZ_WEB_UI_PATH: /etc/signoz/web
+        SIGNOZ_WEB_UI_PATH: /var/www
       ports:
         - port: 8080
           httpSupport: true
         - port: 4317
           protocol: tcp
       prepareCommands:
-        - wget https://github.com/SigNoz/signoz/releases/download/v0.95.1/signoz-community_linux_amd64.tar.gz
-        - tar -xzf signoz-community_linux_amd64.tar.gz
-        - sudo mkdir -p /etc/signoz
-        - sudo cp -r signoz-community_linux_amd64/web /etc/signoz/
-        - sudo cp -r signoz-community_linux_amd64/config /etc/signoz/ || true
-        - sudo cp signoz-community_linux_amd64/bin/signoz /usr/local/bin/
+        - ls -la ./target/linux-amd64/
+        - ls -la ./target/linux-amd64/signoz-community
+        - sudo mv ./target/linux-amd64/signoz-community /usr/local/bin/signoz
         - sudo chmod +x /usr/local/bin/signoz
       start: signoz server
 
