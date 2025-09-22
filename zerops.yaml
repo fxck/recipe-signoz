@@ -3,11 +3,11 @@ zerops:
     run:
       base: ubuntu@22.04
       envVariables:
-        CLICKHOUSE_HOST: ${clickhouse_hostname}
-        CLICKHOUSE_PORT: ${clickhouse_port}
-        CLICKHOUSE_DATABASE: ${clickhouse_database}
-        CLICKHOUSE_USER: ${clickhouse_user}
-        CLICKHOUSE_PASSWORD: ${clickhouse_password}
+        SIGNOZ_TELEMETRYSTORE_CLICKHOUSE_HOST: ${clickhouse_hostname}
+        SIGNOZ_TELEMETRYSTORE_CLICKHOUSE_PORT: ${clickhouse_port}
+        SIGNOZ_TELEMETRYSTORE_CLICKHOUSE_DATABASE: ${clickhouse_database}
+        SIGNOZ_TELEMETRYSTORE_CLICKHOUSE_USER: ${clickhouse_user}
+        SIGNOZ_TELEMETRYSTORE_CLICKHOUSE_PASSWORD: ${clickhouse_password}
         DEPLOYMENT_TYPE: query-service
         OTEL_COLLECTOR_ENABLED: false
         SYSLOG_RECEIVER_ENABLED: true
