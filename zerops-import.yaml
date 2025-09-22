@@ -1,0 +1,17 @@
+project:
+  name: signoz-observability
+
+services:
+  - hostname: clickhouse
+    type: clickhouse@25.3
+    mode: NON_HA
+
+  - hostname: signoz
+    type: ubuntu@22.04
+    buildFromGit: https://github.com/fxck/recipe-signoz
+    enableSubdomainAccess: true
+
+  - hostname: otelcollector
+    type: ubuntu@22.04
+    buildFromGit: https://github.com/fxck/recipe-signoz
+

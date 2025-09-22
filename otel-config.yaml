@@ -1,0 +1,49 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+
+processors:
+  batch:
+    send_batch_size: 10000
+    timeout: 10s
+
+  resource:
+    attributes:
+      - key: zerops.project
+        value: ${ZEROPS_PROJECT_NAME}
+        action: upsert
+      - key: zerops.service
+        value: ${ZEROPS_SERVICE_NAME}
+        action: upsert
+      - key: deployment.environment
+        value: production
+        action: insert
+
+exporters:
+  otlp:
+    endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT}
+    tls:
+      insecure: ${OTEL_EXPORTER_OTLP_INSECURE}
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch, resource]
+      exporters: [otlp]
+    metrics:
+      receivers: [otlp]
+      processors: [batch, resource]
+      exporters: [otlp]
+    logs:
+      receivers: [otlp]
+      processors: [batch, resource]
+      exporters: [otlp]
+
+  telemetry:
+    logs:
+      level: info
