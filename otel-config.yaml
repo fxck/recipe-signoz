@@ -11,18 +11,6 @@ processors:
     send_batch_size: 10000
     timeout: 10s
 
-  resource:
-    attributes:
-      - key: zerops.project
-        value: ${ZEROPS_PROJECT_NAME}
-        action: upsert
-      - key: zerops.service
-        value: ${ZEROPS_SERVICE_NAME}
-        action: upsert
-      - key: deployment.environment
-        value: production
-        action: insert
-
 exporters:
   otlp:
     endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT}
@@ -33,15 +21,15 @@ service:
   pipelines:
     traces:
       receivers: [otlp]
-      processors: [batch, resource]
+      processors: [batch]
       exporters: [otlp]
     metrics:
       receivers: [otlp]
-      processors: [batch, resource]
+      processors: [batch]
       exporters: [otlp]
     logs:
       receivers: [otlp]
-      processors: [batch, resource]
+      processors: [batch]
       exporters: [otlp]
 
   telemetry:
