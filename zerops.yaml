@@ -13,7 +13,7 @@ zerops:
         SYSLOG_RECEIVER_ENABLED: true
         PROMETHEUS_REMOTE_WRITE_ENABLED: true
       ports:
-        - port: 8080
+        - port: 3301
           httpSupport: true
         - port: 514
         - port: 514
