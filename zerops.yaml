@@ -8,12 +8,13 @@ zerops:
         - sudo -E zsc install nodejs@22
         - sudo -E zsc install go@1.22
       buildCommands:
-        - cd frontend && yarn install
-        - make go-build-community-amd64 OS=linux
+        - git clone https://github.com/SigNoz/signoz
+        - cd signoz/frontend && yarn install
+        - cd signoz && make go-build-community-amd64 OS=linux
       deployFiles:
-        - ./frontend/build/~
+        - ./signoz/frontend/build/~
       addToRunPrepare:
-        - ./target/linux-amd64/signoz-community
+        - ./signoz/target/linux-amd64/signoz-community
     run:
       base: ubuntu@22.04
       envVariables:
