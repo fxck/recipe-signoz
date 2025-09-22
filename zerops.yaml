@@ -14,12 +14,12 @@ zerops:
         - port: 4317
           protocol: tcp
       prepareCommands:
-        - wget https://github.com/SigNoz/signoz/releases/download/v0.95.1/signoz_linux_amd64.tar.gz
-        - tar -xzf signoz_linux_amd64.tar.gz
+        - wget https://github.com/SigNoz/signoz/releases/download/v0.95.1/signoz-community_linux_amd64.tar.gz
+        - tar -xzf signoz-community_linux_amd64.tar.gz
         - sudo mkdir -p /etc/signoz
-        - sudo cp -r signoz_linux_amd64/web /etc/signoz/
-        - sudo cp -r signoz_linux_amd64/config /etc/signoz/ || true
-        - sudo cp signoz_linux_amd64/bin/signoz /usr/local/bin/
+        - sudo cp -r signoz-community_linux_amd64/web /etc/signoz/
+        - sudo cp -r signoz-community_linux_amd64/config /etc/signoz/ || true
+        - sudo cp signoz-community_linux_amd64/bin/signoz /usr/local/bin/
         - sudo chmod +x /usr/local/bin/signoz
       start: signoz server
 
