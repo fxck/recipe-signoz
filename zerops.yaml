@@ -25,7 +25,7 @@ zerops:
         SIGNOZ_SQLSTORE_POSTGRES_DSN: postgres://${metadata_user}:${metadata_password}@${metadata_hostname}:${metadata_port}/${metadata_dbName}?sslmode=disable
         SIGNOZ_TELEMETRYSTORE_PROVIDER: clickhouse
         SIGNOZ_TELEMETRYSTORE_CLICKHOUSE_DSN: tcp://${clickhouse_hostname}:${clickhouse_portNative}?username=${clickhouse_user}&password=${clickhouse_password}
-        SIGNOZ_WEB_UI_PATH: /var/www
+        SIGNOZ_WEB_DIRECTORY: /var/www
       ports:
         - port: 8080
           httpSupport: true
