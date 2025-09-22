@@ -1,3 +1,4 @@
+#yamlPreprocessor=on
 project:
   name: signoz
 
@@ -9,6 +10,8 @@ services:
   - hostname: signoz
     type: ubuntu@22.04
     buildFromGit: https://github.com/fxck/recipe-signoz
+    envSecrets:
+      SIGNOZ_JWT_SECRET: <@generateRandomString(<32>)>
     enableSubdomainAccess: true
 
   - hostname: otelcollector

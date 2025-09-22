@@ -12,6 +12,7 @@ zerops:
         OTEL_COLLECTOR_ENABLED: false
         SYSLOG_RECEIVER_ENABLED: true
         PROMETHEUS_REMOTE_WRITE_ENABLED: true
+        SIGNOZ_WEB_UI_PATH: /etc/signoz/web
       ports:
         - port: 3301
           httpSupport: true
@@ -23,8 +24,11 @@ zerops:
       prepareCommands:
         - wget https://github.com/SigNoz/signoz/releases/download/v0.95.1/signoz_linux_amd64.tar.gz
         - tar -xzf signoz_linux_amd64.tar.gz
-        - chmod +x signoz_linux_amd64/bin/signoz
-        - sudo mv signoz_linux_amd64/bin/signoz /usr/local/bin/
+        - sudo mkdir -p /etc/signoz
+        - sudo cp -r signoz_linux_amd64/web /etc/signoz/
+        - sudo cp -r signoz_linux_amd64/config /etc/signoz/ || true
+        - sudo cp signoz_linux_amd64/bin/signoz /usr/local/bin/
+        - sudo chmod +x /usr/local/bin/signoz
       start: signoz server
 
   - setup: otelcollector
