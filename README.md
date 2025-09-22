@@ -1,1 +1,1 @@
-# SigNoz
+# SigNoz x Zerops
