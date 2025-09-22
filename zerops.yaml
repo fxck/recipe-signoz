@@ -3,15 +3,10 @@ zerops:
     run:
       base: ubuntu@22.04
       envVariables:
-        SIGNOZ_TELEMETRYSTORE_CLICKHOUSE_HOST: ${clickhouse_hostname}
-        SIGNOZ_TELEMETRYSTORE_CLICKHOUSE_PORT: ${clickhouse_port}
-        SIGNOZ_TELEMETRYSTORE_CLICKHOUSE_DATABASE: ${clickhouse_database}
-        SIGNOZ_TELEMETRYSTORE_CLICKHOUSE_USER: ${clickhouse_user}
-        SIGNOZ_TELEMETRYSTORE_CLICKHOUSE_PASSWORD: ${clickhouse_password}
-        DEPLOYMENT_TYPE: query-service
-        OTEL_COLLECTOR_ENABLED: false
-        SYSLOG_RECEIVER_ENABLED: true
-        PROMETHEUS_REMOTE_WRITE_ENABLED: true
+        SIGNOZ_SQLSTORE_PROVIDER: postgres
+        SIGNOZ_SQLSTORE_POSTGRES_DSN: postgres://${metadata_user}:${metadata_password}@metadata:5432/${metadata_database}?sslmode=disable
+        SIGNOZ_TELEMETRYSTORE_PROVIDER: clickhouse
+        SIGNOZ_TELEMETRYSTORE_CLICKHOUSE_DSN: tcp://${clickhouse_hostname}:${clickhouse_port}?username=${clickhouse_user}&password=${clickhouse_password}&database=${clickhouse_database}
         SIGNOZ_WEB_UI_PATH: /etc/signoz/web
       ports:
         - port: 3301
