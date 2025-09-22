@@ -1,5 +1,5 @@
 project:
-  name: signoz-observability
+  name: signoz
 
 services:
   - hostname: clickhouse
