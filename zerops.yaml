@@ -21,8 +21,10 @@ zerops:
         - port: 9090
           httpSupport: true
       prepareCommands:
-        - wget https://github.com/SigNoz/signoz/releases/download/v0.45.0/signoz-linux-amd64 -O /usr/local/bin/signoz
-        - chmod +x /usr/local/bin/signoz
+        - wget https://github.com/SigNoz/signoz/releases/download/v0.45.0/signoz-v0.45.0-linux-amd64.tar.gz
+        - tar -xzf signoz-v0.45.0-linux-amd64.tar.gz
+        - chmod +x signoz
+        - sudo mv signoz /usr/local/bin/
       initCommands:
         - signoz migrate
       start: signoz start
@@ -39,7 +41,7 @@ zerops:
         - port: 4318
           httpSupport: true
       prepareCommands:
-        - wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.96.0/otelcol_0.96.0_linux_amd64.tar.gz
-        - tar -xzf otelcol_0.96.0_linux_amd64.tar.gz
-        - mv otelcol /usr/local/bin/
+        - wget https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.135.0/otelcol-contrib_0.135.0_linux_amd64.tar.gz
+        - tar -xzf otelcol-contrib_0.135.0_linux_amd64.tar.gz
+        - sudo mv otelcol-contrib /usr/local/bin/otelcol
       start: otelcol --config=otel-config.yaml
