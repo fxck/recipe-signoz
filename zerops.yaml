@@ -6,7 +6,7 @@ zerops:
         SIGNOZ_SQLSTORE_PROVIDER: postgres
         SIGNOZ_SQLSTORE_POSTGRES_DSN: postgres://${metadata_user}:${metadata_password}@metadata:5432/${metadata_database}?sslmode=disable
         SIGNOZ_TELEMETRYSTORE_PROVIDER: clickhouse
-        SIGNOZ_TELEMETRYSTORE_CLICKHOUSE_DSN: tcp://${clickhouse_hostname}:${clickhouse_port}?username=${clickhouse_user}&password=${clickhouse_password}&database=${clickhouse_database}
+        SIGNOZ_TELEMETRYSTORE_CLICKHOUSE_DSN: tcp://${clickhouse_hostname}:${clickhouse_portNative}?username=${clickhouse_user}&password=${clickhouse_password}
         SIGNOZ_WEB_UI_PATH: /etc/signoz/web
       ports:
         - port: 3301
